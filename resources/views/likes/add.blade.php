@@ -19,15 +19,15 @@
                 <span class="w3-text-red">{{$errors->first('UPC')}}</span>
             @endif
         </div>
-        <div class="w3-margin-bottom">
+        <!-- <div class="w3-margin-bottom">
             <label for="user_id">User:</label>
-            <input type="number" name="users" id="users" value="{{old('user_id')}}" required>
+            <input type="number" name="user_id" id="user_id" value="{{old('user_id')}}" required>
             
             @if ($errors->first('user_id'))
                 <br>
                 <span class="w3-text-red">{{$errors->first('user_id')}}</span>
             @endif
-        </div>
+        </div> -->
 
         <button type="submit" class="w3-button w3-green">Add Like</button>
 

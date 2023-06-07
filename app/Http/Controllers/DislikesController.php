@@ -28,12 +28,13 @@ class DislikesController extends Controller
     {
 
         $attributes = request()->validate([
-            'title' => 'required',
+            'UPC' => 'required',
         ]);
 
         $dislike = new Dislike();
-        $dislike->title = $attributes['title'];
+        $dislike->UPC = $attributes['UPC'];
         $dislike->save();
+        $dislike->dislikeUsers()->attach(Auth::user()->id);
 
         return redirect('/console/dislikes/list')
             ->with('message', 'dislike has been added!');

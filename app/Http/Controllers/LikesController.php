@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Validation\Rule;
+// use Illuminate\Validation\Rule;
 use App\Models\Like;
 use App\Models\User;
 use App\Models\LikeUser;
@@ -33,14 +33,16 @@ class LikesController extends Controller
 
         $attributes = request()->validate([
             'UPC' => 'required',
-            'users' => 'required',
         ]);
 
         $like = new Like();
         $like->UPC = $attributes['UPC'];
-        // $like->users = $attributes['users'];
-        $like->likeUsers()->attach($attributes['users']);
+        // $like->likeUsers()->attach($attributes['id']);
+        // $like->likeUsers()->attach($attributes['like_id']);
         $like->save();
+        $like->likeUsers()->attach(Auth::user()->id);
+            
+
 
         return redirect('/console/likes/list')
             ->with('message', 'like has been added!');

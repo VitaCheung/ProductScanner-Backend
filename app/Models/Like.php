@@ -15,7 +15,7 @@ class Like extends Model
         return $this->belongsToMany(User::class);
     }
 
-    public function likeUsers(): BelongsToMany
+    public function likeUsers()
     {
         return $this->belongsToMany(User::class);
     }
