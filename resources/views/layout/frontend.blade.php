@@ -35,13 +35,7 @@
 
     <br>
 
-    @if (Auth::check())
-        You are logged in as {{auth()->user()->first}} {{auth()->user()->last}} | 
-        <a href="/console/logout">Log Out</a> | 
-        <a href="/console/dashboard">Dashboard</a>
-    @else
-        <a href="/console/login">Login</a>
-    @endif
+
 
 </footer>
 

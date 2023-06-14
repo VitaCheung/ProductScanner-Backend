@@ -27,6 +27,8 @@
                 <span class="w3-text-red">{{$errors->first('password')}}</span>
             @endif
         </div>
+        <input type="checkbox" id="remember" name="remember" value="remember">
+        <label for="remember"> Remember me</label><br>
 
         <button type="submit">Log In</button>
 
