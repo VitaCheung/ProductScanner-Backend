@@ -17,7 +17,7 @@ class LikeFactory extends Factory
     public function definition(): array
     {
         return [
-            'UPC' => $this->faker->numerify('############'),
+            'code' => $this->faker->numerify('############'),
         ];
     }
 }

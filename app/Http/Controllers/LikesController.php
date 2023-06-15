@@ -32,11 +32,11 @@ class LikesController extends Controller
     {
 
         $attributes = request()->validate([
-            'UPC' => 'required',
+            'code' => 'required',
         ]);
 
         $like = new Like();
-        $like->UPC = $attributes['UPC'];
+        $like->code = $attributes['code'];
         // $like->likeUsers()->attach($attributes['id']);
         // $like->likeUsers()->attach($attributes['like_id']);
         $like->save();

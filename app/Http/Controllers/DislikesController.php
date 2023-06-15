@@ -28,11 +28,11 @@ class DislikesController extends Controller
     {
 
         $attributes = request()->validate([
-            'UPC' => 'required',
+            'code' => 'required',
         ]);
 
         $dislike = new Dislike();
-        $dislike->UPC = $attributes['UPC'];
+        $dislike->code = $attributes['code'];
         $dislike->save();
         $dislike->dislikeUsers()->attach(Auth::user()->id);
 

@@ -20,7 +20,7 @@ class SavedItemFactory extends Factory
         return [
             'UPC' => $this->faker->numerify('############'),
             'name' => $this->faker->sentence,
-            'brand' => $this->faker->word,
+            'asin' => $this->faker->word,
             'img' => $this->faker->url,
             'user_id' => User::all()->random(),
         ];

@@ -6,6 +6,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Laravel\Lumen\Auth\Authorizable;
+use Illuminate\Support\Facades\Crypt;
+// use Laravel\Sanctum\HasApiTokens;
 
 
 class User extends Authenticatable implements JWTSubject
@@ -55,5 +57,26 @@ class User extends Authenticatable implements JWTSubject
      */
     public function getJWTCustomClaims() {
         return [];
-    }    
+    }
+    
+    // public function setPasswordAttribute($value)
+    // {
+    //     $this->attributes['password'] = bcrypt($value);
+    // }
+
+    public function savedItems()
+    {
+        return $this->hasMany(SavedItem::class);
+    }
+
+    public function likes()
+    {
+    return $this->belongsToMany(Like::class);
+    }
+
+    public function dislikes()
+    {
+    return $this->belongsToMany(Dislike::class);
+    }
+
 }

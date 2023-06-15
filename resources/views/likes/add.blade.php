@@ -11,12 +11,12 @@
         @csrf
 
         <div class="w3-margin-bottom">
-            <label for="UPC">UPC:</label>
-            <input type="text" name="UPC" id="UPC" value="{{old('UPC')}}" required>
+            <label for="code">code:</label>
+            <input type="text" name="code" id="code" value="{{old('code')}}" required>
             
-            @if ($errors->first('UPC'))
+            @if ($errors->first('code'))
                 <br>
-                <span class="w3-text-red">{{$errors->first('UPC')}}</span>
+                <span class="w3-text-red">{{$errors->first('code')}}</span>
             @endif
         </div>
         <!-- <div class="w3-margin-bottom">

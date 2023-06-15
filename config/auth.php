@@ -16,7 +16,7 @@ return [
             'hash' => false,
         ],
     ],
-
+    
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
@@ -25,5 +25,4 @@ return [
 
 
     ],
-
 ];

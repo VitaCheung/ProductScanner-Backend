@@ -29,12 +29,12 @@
             @endif
         </div>
         <div class="w3-margin-bottom">
-            <label for="brand">Brand:</label>
-            <input type="text" name="brand" id="brand" value="{{old('brand')}}" required>
+            <label for="asin">asin:</label>
+            <input type="text" name="asin" id="asin" value="{{old('asin')}}" required>
             
-            @if ($errors->first('brand'))
+            @if ($errors->first('asin'))
                 <br>
-                <span class="w3-text-red">{{$errors->first('brand')}}</span>
+                <span class="w3-text-red">{{$errors->first('asin')}}</span>
             @endif
         </div>
         <div class="w3-margin-bottom">

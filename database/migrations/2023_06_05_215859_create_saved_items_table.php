@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('user_id');
             $table->string('UPC');
             $table->text('name')->nullable();
-            $table->string('brand')->nullable();
+            $table->string('asin')->nullable();
             $table->string('img')->nullable();
             $table->timestamp('saved_at')->useCurrent();
             $table->timestamps();

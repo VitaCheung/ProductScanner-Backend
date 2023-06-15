@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('dislikes', function (Blueprint $table) {
             $table->id();
-            $table->string('UPC');
+            $table->string('code');
             $table->timestamps();
         });
     }

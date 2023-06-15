@@ -9,7 +9,7 @@
     <table class="w3-table w3-stripped w3-bordered w3-margin-bottom">
         <tr class="w3-red">
             <th>ID</th>
-            <th>UPC</th>
+            <th>code</th>
             <th>Disliked users</th>
             <th></th>
 
@@ -17,7 +17,7 @@
         <?php foreach($dislikes as $dislike): ?>
             <tr>
                 <td>{{$dislike->id}}</td>
-                <td>{{$dislike->UPC}}</td>
+                <td>{{$dislike->code}}</td>
                 <td>@foreach($dislike->users as $dislike)
                     <li>{{$dislike->id}}</li>
                     @endforeach

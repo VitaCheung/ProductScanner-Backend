@@ -24,7 +24,7 @@
                 <td><img src={{$saveditem->img}} height="80"/> </td>
                 <td>{{$saveditem->UPC}}</td>
                 <td>{{$saveditem->name}}</td>
-                <td>{{$saveditem->brand}}</td>
+                <td>{{$saveditem->asin}}</td>
                 <td>{{$saveditem->saved_at}}</td>
                 <!-- <td><a href="/console/saveditems/edit/{{$saveditem->id}}">Edit</a></td> -->
                 <td><a href="/console/saveditems/delete/{{$saveditem->id}}">Delete</a></td>

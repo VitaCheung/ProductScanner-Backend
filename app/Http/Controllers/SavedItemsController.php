@@ -25,14 +25,14 @@ class SavedItemsController extends Controller
         $attributes = request()->validate([
             'UPC' => 'required',
             'name' => 'required',
-            'brand' => 'nullable|string',
+            'asin' => 'nullable|string',
             'img' => 'nullable|url',
         ]);
 
         $saveditem = new SavedItem;
         $saveditem->UPC = $attributes['UPC'];
         $saveditem->name = $attributes['name'];
-        $saveditem->brand = $attributes['brand'];
+        $saveditem->asin = $attributes['asin'];
         $saveditem->img = $attributes['img'];
         $saveditem->user_id = auth()->id();
         $saveditem->save();
@@ -77,14 +77,14 @@ class SavedItemsController extends Controller
         $attributes = request()->validate([
             'UPC' => 'required',
             'name' => 'required',
-            'brand' => 'required',
+            'asin' => 'required',
             'img' => 'nullable|url',
         ]);
 
         $saveditem = new SavedItem();
         $saveditem->UPC = $attributes['UPC'];
         $saveditem->name = $attributes['name'];
-        $saveditem->brand = $attributes['brand'];
+        $saveditem->asin = $attributes['asin'];
         $saveditem->img = $attributes['img'];
         $saveditem->user_id = Auth::user()->id;
         $saveditem->save();
