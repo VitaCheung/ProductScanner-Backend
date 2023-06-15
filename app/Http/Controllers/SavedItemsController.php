@@ -25,7 +25,7 @@ class SavedItemsController extends Controller
         $attributes = request()->validate([
             'UPC' => 'required',
             'name' => 'required',
-            'brand' => 'required',
+            'brand' => 'nullable|string',
             'img' => 'nullable|url',
         ]);
 
@@ -44,25 +44,16 @@ class SavedItemsController extends Controller
         ], 200);
     }
 
-    // public function additem(Request $request) {
-    //     $validator = Validator::make($request->all(), [
-    //         'first' => 'required|string|between:2,100',
-    //         'last' => 'required|string|between:2,100',
-    //         'email' => 'required|string|email|max:100|unique:users',
-    //         'password' => 'required|string|confirmed|min:6',
-    //     ]);
-    //     if($validator->fails()){
-    //         return response()->json($validator->errors()->toJson(), 400);
-    //     }
-    //     $user = User::create(array_merge(
-    //                 $validator->validated(),
-    //                 ['password' => bcrypt($request->password)]
-    //             ));
-    //     return response()->json([
-    //         'message' => 'User successfully registered',
-    //         'user' => $user
-    //     ], 201);
-    // }
+    public function deleteitem(SavedItem $saveditem)
+    {
+        $saveditem->delete();
+
+        return response()->json([
+            'message' => 'Item has been deleted!'
+        ], 200);
+        
+              
+    }
 
 
     public function list()
