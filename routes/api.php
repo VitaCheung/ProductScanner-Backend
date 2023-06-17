@@ -38,6 +38,8 @@ Route::get('/saved-items', [SavedItemsController::class, 'index']);
 Route::post('/add-item', [SavedItemsController::class, 'additem']);    
 // Route::post('/delete-item', [SavedItemsController::class, 'deleteitem']); 
 Route::get('/delete-item/{saveditem:id}', [SavedItemsController::class, 'deleteitem'])->where('saveditem', '[0-9]+')->middleware('auth');
+Route::delete('/delete-item-by-asin/{asin}', [SavedItemsController::class, 'deleteItemByAsin'])->middleware('auth');
+
 
 // Route::get('/saved-items', function(){
 //     $savedItems = SavedItem::where('user_id', auth()->id())->orderBy('created_at')->get();

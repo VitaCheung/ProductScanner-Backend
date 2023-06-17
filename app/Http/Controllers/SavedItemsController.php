@@ -54,6 +54,18 @@ class SavedItemsController extends Controller
         
               
     }
+    public function deleteItemByAsin($asin)
+    {
+        // Find the item by 'asin' and delete it
+        $item = SavedItem::where('asin', $asin)->first();
+        if ($item) {
+            $item->delete();
+            return response()->json(['message' => 'Item deleted successfully']);
+        } else {
+            return response()->json(['message' => 'Item not found'], 404);
+        }
+    }
+
 
 
     public function list()
