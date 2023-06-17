@@ -56,14 +56,18 @@ class SavedItemsController extends Controller
     }
     public function deleteItemByAsin($asin)
     {
-        // Find the item by 'asin' and delete it
-        $item = SavedItem::where('asin', $asin)->first();
-        if ($item) {
-            $item->delete();
-            return response()->json(['message' => 'Item deleted successfully']);
-        } else {
-            return response()->json(['message' => 'Item not found'], 404);
-        }
+    $userId = Auth::id();
+    
+    // Delete the item matching the provided ASIN and user ID
+    $deleted = SavedItem::where('asin', $asin)
+                        ->where('user_id', $userId)
+                        ->delete();
+
+    if ($deleted) {
+        return response()->json(['message' => 'Item deleted successfully']);
+    } else {
+        return response()->json(['message' => 'Item not found or unauthorized'], 404);
+    }
     }
 
 
