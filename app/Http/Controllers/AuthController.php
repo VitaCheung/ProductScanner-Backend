@@ -33,10 +33,9 @@ class AuthController extends Controller
         if (! $token = auth()->attempt($validator->validated())) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
+
         return $this->createNewToken($token);
-        $user = User::where('email', $request->input('email'))->first();
-        $user->remember_token = $token;
-        $user->save();
+        
     }
     /**
      * Register a User.
@@ -96,11 +95,14 @@ class AuthController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
     protected function createNewToken($token){
+        $user = auth()->user();
+        $user->update(['remember_token' => $token]); // Save the token to the 'remember_token' column
+
         return response()->json([
             'access_token' => $token,
             'token_type' => 'bearer',
             'expires_in' => auth()->factory()->getTTL() * 60,
-            'user' => auth()->user()
+            'user' => $user,
         ]);
     }
 }

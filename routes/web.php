@@ -33,45 +33,39 @@ Route::get('/project/{project:slug}', function (Project $project) {
     ]);
 })->where('project', '[A-z\-]+');
 
-Route::get('/console/logout', [ConsoleController::class, 'logout'])->middleware('auth');
-Route::get('/console/login', [ConsoleController::class, 'loginForm'])->middleware('guest');
-Route::post('/console/login', [ConsoleController::class, 'login'])->middleware('guest');
-Route::get('/console/dashboard', [ConsoleController::class, 'dashboard'])->middleware('auth');
+// web.php
+Route::group(['middleware' => 'web'], function () {
+    Route::get('/console/login', [ConsoleController::class, 'loginForm']);
+    Route::post('/console/login', [ConsoleController::class, 'login']);
+    Route::get('/console/logout', [ConsoleController::class, 'logout']);
+    Route::get('/console/dashboard', [ConsoleController::class, 'dashboard']);
 
-Route::get('/console/projects/list', [ProjectsController::class, 'list'])->middleware('auth');
-Route::get('/console/projects/add', [ProjectsController::class, 'addForm'])->middleware('auth');
-Route::post('/console/projects/add', [ProjectsController::class, 'add'])->middleware('auth');
-Route::get('/console/projects/edit/{project:id}', [ProjectsController::class, 'editForm'])->where('project', '[0-9]+')->middleware('auth');
-Route::post('/console/projects/edit/{project:id}', [ProjectsController::class, 'edit'])->where('project', '[0-9]+')->middleware('auth');
-Route::get('/console/projects/delete/{project:id}', [ProjectsController::class, 'delete'])->where('project', '[0-9]+')->middleware('auth');
-Route::get('/console/projects/image/{project:id}', [ProjectsController::class, 'imageForm'])->where('project', '[0-9]+')->middleware('auth');
-Route::post('/console/projects/image/{project:id}', [ProjectsController::class, 'image'])->where('project', '[0-9]+')->middleware('auth');
+    Route::get('/console/users/list', [UsersController::class, 'list']);
+    Route::get('/console/users/add', [UsersController::class, 'addForm']);
+    Route::post('/console/users/add', [UsersController::class, 'add']);
+    Route::get('/console/users/edit/{user:id}', [UsersController::class, 'editForm'])->where('user', '[0-9]+');
+    Route::post('/console/users/edit/{user:id}', [UsersController::class, 'edit'])->where('user', '[0-9]+');
+    Route::get('/console/users/delete/{user:id}', [UsersController::class, 'delete'])->where('user', '[0-9]+');
 
-Route::get('/console/users/list', [UsersController::class, 'list'])->middleware('auth');
-Route::get('/console/users/add', [UsersController::class, 'addForm'])->middleware('auth');
-Route::post('/console/users/add', [UsersController::class, 'add'])->middleware('auth');
-Route::get('/console/users/edit/{user:id}', [UsersController::class, 'editForm'])->where('user', '[0-9]+')->middleware('auth');
-Route::post('/console/users/edit/{user:id}', [UsersController::class, 'edit'])->where('user', '[0-9]+')->middleware('auth');
-Route::get('/console/users/delete/{user:id}', [UsersController::class, 'delete'])->where('user', '[0-9]+')->middleware('auth');
+    Route::get('/console/saveditems/list', [SavedItemsController::class, 'list']);
+    Route::get('/console/saveditems/add', [SavedItemsController::class, 'addForm']);
+    Route::post('/console/saveditems/add', [SavedItemsController::class, 'add']);
+    Route::get('/console/saveditems/delete/{saveditem:id}', [SavedItemsController::class, 'delete'])->where('saveditem', '[0-9]+');
 
-Route::get('/console/types/list', [TypesController::class, 'list'])->middleware('auth');
-Route::get('/console/types/add', [TypesController::class, 'addForm'])->middleware('auth');
-Route::post('/console/types/add', [TypesController::class, 'add'])->middleware('auth');
-Route::get('/console/types/edit/{type:id}', [TypesController::class, 'editForm'])->where('type', '[0-9]+')->middleware('auth');
-Route::post('/console/types/edit/{type:id}', [TypesController::class, 'edit'])->where('type', '[0-9]+')->middleware('auth');
-Route::get('/console/types/delete/{type:id}', [TypesController::class, 'delete'])->where('type', '[0-9]+')->middleware('auth');
+    Route::get('/console/likes/list', [LikesController::class, 'list']);
+    Route::get('/console/likes/add', [LikesController::class, 'addForm']);
+    Route::post('/console/likes/add', [LikesController::class, 'add']);
+    Route::get('/console/likes/delete/{like:id}', [LikesController::class, 'delete'])->where('like', '[0-9]+');
 
-Route::get('/console/saveditems/list', [SavedItemsController::class, 'list'])->middleware('auth');
-Route::get('/console/saveditems/add', [SavedItemsController::class, 'addForm'])->middleware('auth');
-Route::post('/console/saveditems/add', [SavedItemsController::class, 'add'])->middleware('auth');
-Route::get('/console/saveditems/delete/{saveditem:id}', [SavedItemsController::class, 'delete'])->where('saveditem', '[0-9]+')->middleware('auth');
+    Route::get('/console/dislikes/list', [DislikesController::class, 'list']);
+    Route::get('/console/dislikes/add', [DislikesController::class, 'addForm']);
+    Route::post('/console/dislikes/add', [DislikesController::class, 'add']);
+    Route::get('/console/dislikes/delete/{dislike:id}', [DislikesController::class, 'delete'])->where('dislike', '[0-9]+');
+});
 
-Route::get('/console/likes/list', [LikesController::class, 'list'])->middleware('auth');
-Route::get('/console/likes/add', [LikesController::class, 'addForm'])->middleware('auth');
-Route::post('/console/likes/add', [LikesController::class, 'add'])->middleware('auth');
-Route::get('/console/likes/delete/{like:id}', [LikesController::class, 'delete'])->where('like', '[0-9]+')->middleware('auth');
 
-Route::get('/console/dislikes/list', [DislikesController::class, 'list'])->middleware('auth');
-Route::get('/console/dislikes/add', [DislikesController::class, 'addForm'])->middleware('auth');
-Route::post('/console/dislikes/add', [DislikesController::class, 'add'])->middleware('auth');
-Route::get('/console/dislikes/delete/{dislike:id}', [DislikesController::class, 'delete'])->where('dislike', '[0-9]+')->middleware('auth');
+// Route::get('/console/logout', [ConsoleController::class, 'logout'])->middleware('auth');
+// Route::get('/console/login', [ConsoleController::class, 'loginForm'])->middleware('guest');
+// Route::post('/console/login', [ConsoleController::class, 'login'])->middleware('guest');
+// Route::get('/console/dashboard', [ConsoleController::class, 'dashboard'])->middleware('auth');
+

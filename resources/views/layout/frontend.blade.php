@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>My Portfolio | {{$title}}    </title>
+    <title>Admin side | {{$title}}    </title>
 
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="{{url('app.css')}}">
@@ -16,7 +16,8 @@
 
 <header class="w3-padding">
 
-    <h1 class="w3-text-red">My Portfolio!</h1>
+    <h1 class="w3-text-red">Admin page</h1>
+    <h2>Go to use <a href="https://product-scanner.vitacheung.ca/">Product Scanner</a>!</h2>
 
 </header>
 
@@ -28,10 +29,10 @@
 
 <footer class="w3-padding">
 
-    Footer Text | 
+    Admin page | 
     Copyright {{date('Y')}}
-    <a href="#">Facebook</a> | 
-    <a href="#">Instagram</a>
+    <!-- <a href="#">Facebook</a> | 
+    <a href="#">Instagram</a> -->
 
     <br>
 

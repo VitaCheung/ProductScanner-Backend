@@ -1,12 +1,12 @@
 <?php
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\SavedItemsController;
 use App\Models\SavedItem;
-// use App\Models\Type;
 use App\Models\User;
+use Illuminate\Support\Facades\Route;
+// use App\Models\Type;
 // use App\Models\Project;
 
 
@@ -29,10 +29,10 @@ Route::group([
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::post('/refresh', [AuthController::class, 'refresh']);
     Route::get('/user-profile', [AuthController::class, 'userProfile']); 
-    // Route::get('/saved-items', [SavedItemsController::class, 'index']); 
-    // Route::post('/add-item', [SavedItemsController::class, 'additem']);  
 
 });
+
+
 
 Route::get('/saved-items', [SavedItemsController::class, 'index']);
 Route::post('/add-item', [SavedItemsController::class, 'additem']);    
@@ -45,10 +45,10 @@ Route::delete('/delete-item-by-asin/{asin}', [SavedItemsController::class, 'dele
 //     $savedItems = SavedItem::where('user_id', auth()->id())->orderBy('created_at')->get();
 //     return $savedItems;
 // });  
-Route::get('/saveditems', function(){
-    $savedItems = SavedItem::orderBy('created_at')->get();
-    return $savedItems;
-});
+// Route::get('/saveditems', function(){
+//     $savedItems = SavedItem::orderBy('created_at')->get();
+//     return $savedItems;
+// });
 
 
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
