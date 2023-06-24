@@ -3,8 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\User;
-use App\Models\Type;
-use App\Models\Project;
 use App\Models\SavedItem;
 use App\Models\Like;
 use App\Models\Dislike;
@@ -21,15 +19,11 @@ class DatabaseSeeder extends Seeder
     {
 
         User::truncate();
-        Type::truncate();
-        Project::truncate();
         SavedItem::truncate();
         Like::truncate();
         Dislike::truncate();
         
         User::factory()->count(2)->create();
-        Type::factory()->count(3)->create();
-        Project::factory()->count(4)->create();
         SavedItem::factory()->count(4)->create();
 
         Like::factory()->count(4)->create()->each(function($like){
@@ -42,12 +36,7 @@ class DatabaseSeeder extends Seeder
             $dislike->dislikeUsers()->attach($users);
         });
 
-        // User::factory()->count(4)->create()->each(function($user){
-        //     $likes = Like::all()->random(rand(1,2) )->pluck('id');
-        //     $user->likes()->attach($likes);
-        //     // $dislikes = Dislike::all()->random(rand(1,2) )->pluck('id');
-        //     // $user->dislikes()->attach($dislikes);
-        // });
+
             
     }
 }

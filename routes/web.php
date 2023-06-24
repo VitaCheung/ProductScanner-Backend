@@ -1,14 +1,15 @@
 <?php
 
-use App\Models\Project;
+// use App\Models\Project;
+use App\Models\User;
+// use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ConsoleController;
-use App\Http\Controllers\ProjectsController;
-use App\Http\Controllers\TypesController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\SavedItemsController;
 use App\Http\Controllers\LikesController;
 use App\Http\Controllers\DislikesController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,18 +24,18 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome', [
-        'projects' => Project::all(),
+        // 'projects' => Project::all(),
     ]);
 });
 
-Route::get('/project/{project:slug}', function (Project $project) {
-    return view('project', [
-        'project' => $project,
-    ]);
-})->where('project', '[A-z\-]+');
+// Route::get('/project/{project:slug}', function (Project $project) {
+//     return view('project', [
+//         'project' => $project,
+//     ]);
+// })->where('project', '[A-z\-]+');
 
 // web.php
-Route::group(['middleware' => 'web'], function () {
+Route::middleware('web')->group(function () {
     Route::get('/console/login', [ConsoleController::class, 'loginForm']);
     Route::post('/console/login', [ConsoleController::class, 'login']);
     Route::get('/console/logout', [ConsoleController::class, 'logout']);
@@ -61,7 +62,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/console/dislikes/add', [DislikesController::class, 'addForm']);
     Route::post('/console/dislikes/add', [DislikesController::class, 'add']);
     Route::get('/console/dislikes/delete/{dislike:id}', [DislikesController::class, 'delete'])->where('dislike', '[0-9]+');
-});
+})->middleware('auth');
 
 
 // Route::get('/console/logout', [ConsoleController::class, 'logout'])->middleware('auth');
